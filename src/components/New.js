@@ -1,18 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const New = (props) => {
+const New = ({ handleCreation }) => {
+    const [title, setTitle] = useState('')
+    const [author, setAuthor] = useState('')
+    const [url, setUrl] = useState('')
+
+    const addBlog = (event) => {
+        event.preventDefault()
+        handleCreation({
+            title,
+            author,
+            url,
+        })
+
+        setTitle('')
+        setAuthor('')
+        setUrl('')
+    }
+
     return (
         <div>
             <h2>create new</h2>
-            <form onSubmit={props.handleCreation}>
+            <form onSubmit={addBlog}>
                 <div>
-                    title: <input type="text" value={props.title} name="Title" onChange={ ({target}) => props.setTitle(target.value)}/>
+                    title: <input type="text" value={title} name="Title" onChange={ ({target}) => setTitle(target.value)}/>
                 </div>
                 <div>
-                    author: <input type="text" value={props.author} name="Author" onChange={ ({target}) => props.setAuthor(target.value)}/>
+                    author: <input type="text" value={author} name="Author" onChange={ ({target}) => setAuthor(target.value)}/>
                 </div>
                 <div>
-                    url: <input type="text" value={props.url} name="Url" onChange={ ({target}) => props.setUrl(target.value)}/>
+                    url: <input type="text" value={url} name="Url" onChange={ ({target}) => setUrl(target.value)}/>
                 </div>
                 <button type="submit">create</button>
             </form>
