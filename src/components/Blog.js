@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Togglable from './Togglable'
 
 const blogStyle = {
@@ -30,14 +31,14 @@ const Blog = ({ user, blog, handleUpdating, handleDeletion }) => {
 
   const deleteBlog = async (event) => {
     event.preventDefault()
-    
+
     if (!window.confirm(`Remove blog ${blog.title} ${blog.author}`)) return
     handleDeletion(blog.id)
   }
 
   return (
     <div style={blogStyle}>
-      <div>
+      <div className="name">
         {blog.title} {blog.author}
       </div>
       <Togglable buttonLabel="view" cancelLabel="hide">
@@ -45,7 +46,7 @@ const Blog = ({ user, blog, handleUpdating, handleDeletion }) => {
           {blog.url}
         </div>
         <div>
-          likes {blog.likes} 
+          likes {blog.likes}
           <form onSubmit={putBlog}>
             <button type="submit">like</button>
           </form>
@@ -54,7 +55,14 @@ const Blog = ({ user, blog, handleUpdating, handleDeletion }) => {
         {isUsersBlog(user, blog) ? <Remove deleteBlog={deleteBlog}/> : <span></span>}
       </Togglable>
     </div>
-  )  
+  )
+}
+
+Blog.propTypes = {
+  user: PropTypes.object.isRequired,
+  blog: PropTypes.object.isRequired,
+  handleUpdating: PropTypes.func.isRequired,
+  handleDeletion: PropTypes.func.isRequired
 }
 
 export default Blog

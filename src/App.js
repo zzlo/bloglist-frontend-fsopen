@@ -19,7 +19,7 @@ const App = () => {
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs.sort((a, b) => b.likes - a.likes) )
-    )  
+    )
   }, [])
 
   useEffect(() => {
@@ -99,7 +99,7 @@ const App = () => {
       const sortedBlogs = filteredBlogs.sort((a, b) => b.likes - a.likes)
       setBlogs(sortedBlogs)
     } catch (exception) {
-
+      console.log(exception)
     }
   }
 
@@ -119,25 +119,25 @@ const App = () => {
       const sortedBlogs = filteredBlogs.sort((a, b) => b.likes - a.likes)
       setBlogs(sortedBlogs)
     } catch (exception) {
-      
+      console.log(exception)
     }
   }
 
   return (
     <div>
-        <h2>blogs</h2>
-        <Notification message={message}/>
-        <div>{user.name} logged in</div>
-        <form onSubmit={handleLogout}>
-          <button type="submit">logout</button>
-        </form> <br/>
-        <Togglable buttonLabel="new blog" cancelLabel="cancel" ref={blogFormRef}>
-          <New handleCreation={handleCreation}/>
-        </Togglable>
-        <br/>
-        {blogs.map(blog => 
-          <Blog handleDeletion={handleDeletion} user={user} key={blog.id} handleUpdating={handleUpdating} blog={blog} />
-        )}
+      <h2>blogs</h2>
+      <Notification message={message}/>
+      <div>{user.name} logged in</div>
+      <form onSubmit={handleLogout}>
+        <button type="submit">logout</button>
+      </form> <br/>
+      <Togglable buttonLabel="new blog" cancelLabel="cancel" ref={blogFormRef}>
+        <New handleCreation={handleCreation}/>
+      </Togglable>
+      <br/>
+      {blogs.map(blog =>
+        <Blog handleDeletion={handleDeletion} user={user} key={blog.id} handleUpdating={handleUpdating} blog={blog} />
+      )}
     </div>
   )
 }
