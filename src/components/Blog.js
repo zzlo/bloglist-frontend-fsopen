@@ -37,7 +37,7 @@ const Blog = ({ user, blog, handleUpdating, handleDeletion }) => {
   }
 
   return (
-    <div style={blogStyle}>
+    <div className="blog" style={blogStyle}>
       <div className="name">
         {blog.title} {blog.author}
       </div>
@@ -46,9 +46,9 @@ const Blog = ({ user, blog, handleUpdating, handleDeletion }) => {
           {blog.url}
         </div>
         <div>
-          likes {blog.likes}
+          likes <span id="likes">{blog.likes}</span>
           <form onSubmit={putBlog}>
-            <button type="submit">like</button>
+            <button className="like" type="submit">like</button>
           </form>
         </div>
         <div>{blog.user.name}</div>

@@ -31,7 +31,7 @@ const New = ({ handleCreation }) => {
         <div>
             url: <input type="text" value={url} name="Url" id="url" onChange={ ({ target }) => setUrl(target.value)}/>
         </div>
-        <button type="submit">create</button>
+        <button id="create" type="submit">create</button>
       </form>
     </div>
   )
